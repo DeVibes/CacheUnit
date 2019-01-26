@@ -1,0 +1,10 @@
+{
+	"headers": {
+		"action": "GET"
+	},
+	"body": [{
+			"dataModelId": 1,
+			"content": "one"
+		}
+	]
+}
