@@ -18,6 +18,8 @@ import java.util.Scanner;
 public class CacheUnitService<T>
         extends java.lang.Object {
 
+    private final String ABS_PATH = "/home/mark/dev/CacheUnit/CacheUnitClient/src/resources/database.txt";
+
     public IDao<Long, DataModel<T>> iDao;
     public CacheUnit<T> cacheUnit;
     public enum Algorithm
@@ -46,7 +48,7 @@ public class CacheUnitService<T>
     @SuppressWarnings({ "unchecked", "resource" })
     public CacheUnitService() {
 
-        iDao = new DaoFileImpl<>("C:\\Users\\MarkPoliatskin\\git\\cache-hit\\src\\main\\resources\\Database.txt");
+        iDao = new DaoFileImpl<>(ABS_PATH);
         cacheUnit = new CacheUnit<>(new LRUAlgoCacheImpl<>(3));
         currentAlgorithm = Algorithm.LRU;
         requestCounter = 0;
@@ -54,7 +56,7 @@ public class CacheUnitService<T>
         capacity = 3;
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(
-                    "C:\\Users\\MarkPoliatskin\\git\\cache-hit\\src\\main\\resources\\Database.txt"));
+                    ABS_PATH));
             Map<Long,DataModel<T>> map = (HashMap<Long, DataModel<T>>) ois.readObject();
             daoIds = new ArrayList<Long>(map.keySet());
         }
